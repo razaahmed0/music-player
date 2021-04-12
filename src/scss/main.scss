@@ -1,0 +1,184 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	// Positioning
+	align-items: center;
+	justify-content: center;
+
+	// Box-model
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	margin: 0;
+
+	// Typography
+	font-family: "Lato", sans-serif;
+
+	// Visual
+	background-image: linear-gradient(
+		0deg,
+		rgb(247, 247, 247) 23.8%,
+		rgb(252, 221, 221) 92%
+	);
+}
+
+.music-container {
+	// Positioning
+	position: relative;
+	z-index: 10;
+
+	// Box-model
+	display: flex;
+	margin: 100px 0;
+	padding: 20px 30px;
+
+	// Visual
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+
+	// *######################################################################* //
+	.music-info {
+		// Positioning
+		position: absolute;
+		top: 0;
+		left: 20px;
+		transform: translateY(0%);
+
+		// Box-model
+		border-radius: 15px 15px 0 0;
+		width: calc(100% - 40px);
+		padding: 10px 10px 10px 150px;
+
+		// Visual
+		background-color: rgba(255, 255, 255, 0.5);
+		opacity: 0;
+		transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+
+		h4 {
+			margin: 0;
+		}
+
+		.progress-container {
+			// Box-model
+			height: 4px;
+			margin: 10px 0;
+			width: 100%;
+
+			//Visual
+			background: #fff;
+			border-radius: 5px;
+			cursor: pointer;
+
+			.progress {
+				// Box-model
+				height: 100%;
+				width: 0;
+
+				// Visual
+				background-color: #fe8daa;
+				border-radius: 5px;
+				transition: width 0.1s linear;
+			}
+		}
+	}
+
+	// *######################################################################* //
+	.img-container {
+		position: relative;
+		width: 110px;
+
+		img {
+			// Positioning
+			bottom: 0;
+			left: 0;
+			position: absolute;
+
+			// Box-model
+			height: 110px;
+			width: inherit;
+
+			// Visual
+			animation: rotate 3s linear infinite;
+			animation-play-state: paused;
+			border-radius: 50%;
+			object-fit: cover;
+
+			// Misc
+			@keyframes rotate {
+				from {
+					transform: rotate(0deg);
+				}
+
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		}
+
+		&::after {
+			// Positioning
+			bottom: 50%;
+			left: 50%;
+			position: absolute;
+
+			// Box-model
+			height: 20px;
+			width: 20px;
+
+			// Visual
+			background-color: #fff;
+			border-radius: 50%;
+			content: "";
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	// *######################################################################* //
+	.navigation {
+		// Positioning
+		align-items: center;
+		justify-content: center;
+		z-index: 1;
+
+		// Box-model
+		display: flex;
+
+		.action-btn {
+			// Box-model
+			border: 0;
+			margin: 0 20px;
+			padding: 10px;
+
+			// Typography
+			font-size: 20px;
+
+			// Visual
+			background-color: #fff;
+			color: #dfdbdf;
+			cursor: pointer;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		.action-btn-big {
+			color: #cdc2d0;
+			font-size: 30px;
+		}
+	}
+
+	// *######################################################################* //
+	&.play {
+		img {
+			animation-play-state: running;
+		}
+		.music-info {
+			opacity: 1;
+			transform: translateY(-100%);
+		}
+	}
+}
